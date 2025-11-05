@@ -1,15 +1,28 @@
 'use client';
-import { motion, AnimatePresence } from 'motion/react';
-import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
 export default function Experiences() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [isScrolling, setIsScrolling] = useState(false);
   const images = [
     '/tesla.png',
     '/shopify.svg',
     '/Recognize_logo.png',
     '/usafacts.png',
   ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (activeIndex !== null) {
+        setIsScrolling(true);
+        setActiveIndex(null);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [activeIndex]);
 
   return (
     <div className='relative z-10 flex justify-center items-center min-h-screen'>
@@ -20,7 +33,6 @@ export default function Experiences() {
 
             return (
               <div key={index} className='relative'>
-                {/* Keeps layout consistent when one is expanded */}
                 {isActive && <div className='invisible w-70 h-30' />}
 
                 <motion.img
@@ -33,12 +45,20 @@ export default function Experiences() {
                       ? 'fixed top-1/2 left-1/2 w-70 h-30 -translate-x-1/2 -translate-y-1/2 z-50'
                       : 'w-70 h-30'
                   }`}
+                  initial={false}
                   transition={{
                     type: 'spring',
                     stiffness: 600,
                     damping: 100,
                   }}
-                  onClick={() => setActiveIndex(isActive ? null : index)}
+                  onClick={() => {
+                    // Prevent reactivation immediately after scroll
+                    if (!isScrolling) {
+                      setActiveIndex(isActive ? null : index);
+                    }
+                    // Reset scrolling state after a short delay
+                    setTimeout(() => setIsScrolling(false), 200);
+                  }}
                 />
               </div>
             );
