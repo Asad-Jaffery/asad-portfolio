@@ -31,10 +31,9 @@ export default function BackgroundEffect() {
     let ctx;
     let center;
     let tick;
-    let noise3D; // <-- renamed
+    let noise3D; 
     let particleProps;
 
-    // Utility helpers
     const rand = (n) => Math.random() * n;
     const randRange = (n) => n - Math.random() * n * 2;
     const fadeInOut = (t, m) => {
@@ -55,7 +54,7 @@ export default function BackgroundEffect() {
 
     function initParticles() {
       tick = 0;
-      noise3D = createNoise3D(); // ✅ new API usage
+      noise3D = createNoise3D(); 
       particleProps = new Float32Array(particlePropsLength);
 
       for (let i = 0; i < particlePropsLength; i += particlePropCount) {
