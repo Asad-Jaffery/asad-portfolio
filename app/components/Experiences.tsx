@@ -33,6 +33,7 @@ export default function Experiences() {
 
             return (
               <div key={index} className='relative'>
+                {/* Keeps layout consistent when one is acic */}
                 {isActive && <div className='invisible w-70 h-30' />}
 
                 <motion.img
@@ -42,7 +43,7 @@ export default function Experiences() {
                   alt={`Experience ${index}`}
                   className={`object-cover rounded-2xl cursor-pointer ring-black ${
                     isActive
-                      ? 'fixed top-1/2 left-1/2 w-70 h-30 -translate-x-1/2 -translate-y-1/2 z-50'
+                      ? 'fixed top-1/2 left-1/2 w-100 h-50 -translate-x-1/2 -translate-y-1/2 z-50'
                       : 'w-70 h-30'
                   }`}
                   initial={false}
