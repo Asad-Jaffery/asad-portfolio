@@ -1,5 +1,6 @@
 import BackgroundEffect from './components/BackgroundEffect';
 import Experiences from './components/Experiences';
+import Greetings from './components/Greeting';
 
 export default function Page() {
   return (
@@ -9,7 +10,7 @@ export default function Page() {
       </div>
 
       <section className='min-h-screen flex items-center justify-center'>
-        INTRO TEXT
+        <Greetings />
       </section>
       <section className='min-h-screen flex items-center justify-center'>
         <Experiences />
