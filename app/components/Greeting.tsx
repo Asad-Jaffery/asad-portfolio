@@ -26,7 +26,7 @@ export default function Greetings() {
       variants={container}
       initial='hidden'
       animate='visible'
-      className='text-left w-full pl-20 text-7xl'
+      className='text-center w-full text-7xl'
     >
       {text.split('').map((char, index) => (
         <motion.span
