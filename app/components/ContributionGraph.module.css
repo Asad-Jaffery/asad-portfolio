@@ -1,3 +1,7 @@
+.graph {
+  position: relative;
+}
+
 .total {
   margin: 0 0 12px;
   color: var(--mute);
@@ -27,4 +31,63 @@
   width: 11px;
   height: 11px;
   display: block;
+  border-radius: 2px;
+  outline: 1px solid rgb(27 31 36 / 5%);
+  outline-offset: -1px;
+  transition: transform 100ms ease, outline-color 100ms ease;
+}
+
+.day:hover {
+  position: relative;
+  z-index: 1;
+  outline-color: rgb(27 31 36 / 35%);
+  transform: scale(1.18);
+}
+
+.level0 {
+  background: #eff2f5;
+}
+
+.level1 {
+  background: #aceebb;
+}
+
+.level2 {
+  background: #6bdc87;
+}
+
+.level3 {
+  background: #40c463;
+}
+
+.level4 {
+  background: #2da44e;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 20;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  padding: 6px 9px;
+  border-radius: 4px;
+  background: #24292f;
+  color: #fff;
+  font-size: 0.75rem;
+  line-height: 1.35;
+  pointer-events: none;
+  transform: translate(-50%, calc(-100% - 8px));
+  box-shadow: 0 4px 12px rgb(27 31 36 / 18%);
+}
+
+.tooltip::after {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top-color: #24292f;
+  content: '';
+  transform: translateX(-50%);
 }

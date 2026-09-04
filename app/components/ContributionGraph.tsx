@@ -1,12 +1,34 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import type { GithubCalendar } from '../lib/types';
+import type { ContributionDay, GithubCalendar } from '../lib/types';
 import styles from './ContributionGraph.module.css';
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
+const levelClasses: Record<ContributionDay['level'], string> = {
+  NONE: styles.level0,
+  FIRST_QUARTILE: styles.level1,
+  SECOND_QUARTILE: styles.level2,
+  THIRD_QUARTILE: styles.level3,
+  FOURTH_QUARTILE: styles.level4,
+};
+
+type Tooltip = {
+  day: ContributionDay;
+  x: number;
+  y: number;
+};
 
 export default function ContributionGraph() {
   const [data, setData] = useState<GithubCalendar | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [tooltip, setTooltip] = useState<Tooltip | null>(null);
 
   useEffect(() => {
     fetch('/api/github')
@@ -27,7 +49,7 @@ export default function ContributionGraph() {
   }
 
   return (
-    <div>
+    <div className={styles.graph}>
       <p className={styles.total}>{data.total} contributions in the last year</p>
       <div className={styles.scroll}>
         <div className={styles.grid} role="img" aria-label="GitHub contribution calendar">
@@ -36,19 +58,35 @@ export default function ContributionGraph() {
               {week.days.map((day) => (
                 <span
                   key={day.date}
-                  className={styles.day}
-                  title={`${day.date}: ${day.count}`}
-                  style={{
-                    background:
-                      day.count === 0 ? 'var(--line)' : 'var(--forest)',
-                    opacity: day.count === 0 ? 0.35 : Math.min(0.35 + day.count * 0.12, 1),
+                  className={`${styles.day} ${levelClasses[day.level]}`}
+                  onMouseEnter={(event) => {
+                    const rect = event.currentTarget.getBoundingClientRect();
+                    setTooltip({
+                      day,
+                      x: rect.left + rect.width / 2,
+                      y: rect.top,
+                    });
                   }}
+                  onMouseLeave={() => setTooltip(null)}
                 />
               ))}
             </div>
           ))}
         </div>
       </div>
+      {tooltip && (
+        <div
+          className={styles.tooltip}
+          role="tooltip"
+          style={{ left: tooltip.x, top: tooltip.y }}
+        >
+          <strong>
+            {tooltip.day.count}{' '}
+            {tooltip.day.count === 1 ? 'contribution' : 'contributions'}
+          </strong>{' '}
+          on {dateFormatter.format(new Date(`${tooltip.day.date}T00:00:00Z`))}
+        </div>
+      )}
     </div>
   );
 }

@@ -12,6 +12,7 @@ const QUERY = `
               date
               contributionCount
               color
+              contributionLevel
             }
           }
         }
@@ -68,12 +69,19 @@ export async function GET() {
           date: string;
           contributionCount: number;
           color: string;
+          contributionLevel:
+            | 'NONE'
+            | 'FIRST_QUARTILE'
+            | 'SECOND_QUARTILE'
+            | 'THIRD_QUARTILE'
+            | 'FOURTH_QUARTILE';
         }[];
       }) => ({
         days: week.contributionDays.map((day) => ({
           date: day.date,
           count: day.contributionCount,
           color: day.color,
+          level: day.contributionLevel,
         })),
       }),
     ),
