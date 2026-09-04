@@ -1,0 +1,30 @@
+.total {
+  margin: 0 0 12px;
+  color: var(--mute);
+}
+
+.status {
+  color: var(--mute);
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+.grid {
+  display: flex;
+  gap: 3px;
+  min-width: 720px;
+}
+
+.week {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.day {
+  width: 11px;
+  height: 11px;
+  display: block;
+}

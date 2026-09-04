@@ -1,0 +1,116 @@
+.shell {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+  margin-bottom: 48px;
+}
+
+.links {
+  display: flex;
+  gap: 18px;
+}
+
+.links a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(3rem, 8vw, 6.4rem);
+  font-weight: 500;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  margin: 0 0 20px;
+}
+
+.hero p {
+  max-width: 38rem;
+  margin: 0;
+  color: var(--mute);
+  font-size: 1.15rem;
+}
+
+.mark {
+  color: var(--spark);
+}
+
+.section {
+  margin-top: 72px;
+}
+
+.section h2 {
+  font-family: var(--display);
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin: 0 0 20px;
+}
+
+.role {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.role:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+.logo {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  background: var(--tile);
+  padding: 6px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  color: var(--mute);
+  font-size: 0.92rem;
+  margin: 4px 0 10px;
+}
+
+.role h3 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.role ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.role li + li {
+  margin-top: 6px;
+}
+
+.edu {
+  margin-top: 28px;
+}
+
+.edu p {
+  margin: 6px 0 0;
+  color: var(--mute);
+}
+
+@media (max-width: 640px) {
+  .top {
+    flex-direction: column;
+  }
+
+  .role {
+    grid-template-columns: 1fr;
+  }
+}

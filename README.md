@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Asad Jaffery
 
-## Getting Started
+Personal site. Next.js + TypeScript.
 
-First, run the development server:
+## Run
 
 ```bash
+npm install
+cp .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Env
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Why |
+| --- | --- |
+| `GITHUB_TOKEN` | GraphQL contribution calendar for `Asad-Jaffery` |
+| `SPOTIFY_CLIENT_ID` | Spotify app |
+| `SPOTIFY_CLIENT_SECRET` | Spotify app |
+| `SPOTIFY_REFRESH_TOKEN` | Your account, one-time auth |
 
-## Learn More
+Without these, the GitHub and Spotify sections show a quiet error. The rest of the page still works.
 
-To learn more about Next.js, take a look at the following resources:
+## Spotify refresh token (once)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Create an app at [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
+2. Add a redirect URI such as `http://127.0.0.1:3000/callback`.
+3. Open this URL in a browser (replace `CLIENT_ID`):
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+https://accounts.spotify.com/authorize?client_id=CLIENT_ID&response_type=code&redirect_uri=http://127.0.0.1:3000/callback&scope=user-read-recently-played
+```
 
-## Deploy on Vercel
+4. Copy `code` from the redirect URL.
+5. Exchange it with the helper:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run spotify:token
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+6. Put the printed `SPOTIFY_REFRESH_TOKEN` value in `.env.local`. Visitors never log in. Only your plays are shown.
+
+## GitHub token
+
+A classic or fine-grained token that can read public user data is enough. The calendar comes from GraphQL `contributionsCollection`, not REST.
+
+## Hosting
+
+Not decided yet. Next.js Route Handlers are ready for a later serverless host.

@@ -1,0 +1,39 @@
+.status {
+  color: var(--mute);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.row img,
+.ph {
+  width: 48px;
+  height: 48px;
+  background: var(--line);
+  object-fit: cover;
+}
+
+.row strong,
+.row em {
+  display: block;
+}
+
+.row em {
+  font-style: normal;
+  color: var(--mute);
+  font-size: 0.92rem;
+}
