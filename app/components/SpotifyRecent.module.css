@@ -15,8 +15,17 @@
   grid-template-columns: 48px 1fr;
   gap: 12px;
   align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: #eef0ef;
   text-decoration: none;
   color: inherit;
+  transition: background-color 120ms ease;
+}
+
+.row:hover,
+.row:focus-visible {
+  background: #d4d9d6;
 }
 
 .row img,

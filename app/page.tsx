@@ -68,7 +68,7 @@ export default function Page() {
       </section>
 
       <section className={styles.section} id="spotify">
-        <h2>Recently played</h2>
+        <h2>What I&apos;ve been listening to on Spotify</h2>
         <SpotifyRecent />
       </section>
     </main>

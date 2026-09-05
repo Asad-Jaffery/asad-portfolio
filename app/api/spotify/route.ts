@@ -35,7 +35,7 @@ export async function GET() {
   }
 
   const res = await fetch(
-    'https://api.spotify.com/v1/me/player/recently-played?limit=12',
+    'https://api.spotify.com/v1/me/player/recently-played?limit=5',
     {
       headers: { Authorization: `Bearer ${access}` },
       next: { revalidate: 300 },
