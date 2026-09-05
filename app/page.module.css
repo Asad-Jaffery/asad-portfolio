@@ -12,6 +12,12 @@
   margin-bottom: 48px;
 }
 
+.name {
+  margin: 0;
+  font: inherit;
+  font-weight: 400;
+}
+
 .links {
   display: flex;
   gap: 18px;
@@ -22,24 +28,17 @@
   text-underline-offset: 3px;
 }
 
-.hero h1 {
-  font-family: var(--display);
-  font-size: clamp(3rem, 8vw, 6.4rem);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.03em;
-  margin: 0 0 20px;
+.bioPlaceholder {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
 }
 
-.hero p {
-  max-width: 38rem;
+.bioPlaceholder p {
   margin: 0;
   color: var(--mute);
-  font-size: 1.15rem;
-}
-
-.mark {
-  color: var(--spark);
 }
 
 .section {
@@ -73,13 +72,13 @@
   padding: 6px;
 }
 
-.meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  color: var(--mute);
-  font-size: 0.92rem;
-  margin: 4px 0 10px;
+.logoIcon {
+  background: transparent;
+  padding: 0;
+}
+
+.logoBlend {
+  mix-blend-mode: multiply;
 }
 
 .role h3 {
@@ -87,22 +86,10 @@
   font-size: 1.15rem;
 }
 
-.role ul {
-  margin: 0;
-  padding-left: 1.1rem;
-}
-
-.role li + li {
-  margin-top: 6px;
-}
-
-.edu {
-  margin-top: 28px;
-}
-
-.edu p {
-  margin: 6px 0 0;
+.team {
+  margin: 4px 0 0;
   color: var(--mute);
+  font-size: 0.92rem;
 }
 
 @media (max-width: 640px) {
